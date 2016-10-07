@@ -1,0 +1,17 @@
+{
+  "name": "deploybot",
+  "description": "A Semaphore deploy robot",
+  "repository": "https://github.com/arnoldcano/deploybot",
+  "logo": "https://github.com/arnoldcano/deploybot/icon.jpg",
+  "keywords": ["hubot", "semaphore", "deploy", "slack"],
+  "env": {
+    "HUBOT_SEMAPHOREAPP_DEPLOY": "Enter something non-zero to enable deployment commands",
+    "HUBOT_SEMAPHOREAPP_AUTH_TOKEN": "Enter a Semaphore authorization token",
+    "HUBOT_SLACK_TOKEN": "Enter a Slack token"
+  },
+  "formation": [
+    { "process": "web", "quantity": 0 },
+    { "process": "worker", "quantity": 1 }
+  ],
+  "addons": ["redis"]
+}
