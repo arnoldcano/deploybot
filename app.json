@@ -2,7 +2,7 @@
   "name": "deploybot",
   "description": "A Semaphore deploy robot",
   "repository": "https://github.com/arnoldcano/deploybot",
-  "logo": "https://github.com/arnoldcano/deploybot/icon.jpg",
+  "logo": "https://github.com/arnoldcano/deploybot/blob/master/icon.jpg",
   "keywords": ["hubot", "semaphore", "deploy", "slack"],
   "env": {
     "HUBOT_SEMAPHOREAPP_DEPLOY": "Enter something non-zero to enable deployment commands",
