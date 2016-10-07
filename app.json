@@ -13,5 +13,5 @@
     { "process": "web", "quantity": 0 },
     { "process": "worker", "quantity": 1 }
   ],
-  "addons": ["redis"]
+  "addons": ["heroku-redis"]
 }
