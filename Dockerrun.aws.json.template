@@ -11,7 +11,7 @@
           "sourceVolume": "awseb-logs-deploybot",
           "containerPath": "/var/log/deploybot"
         }
-      ],
+      ]
     },
     {
       "name": "redis",
