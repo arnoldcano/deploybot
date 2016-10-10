@@ -7,6 +7,11 @@ deployed on [AWS Elastic Beanstalk][elastic beanstalk] to get you up and running
 [elastic beanstalk]: https://aws.amazon.com/elasticbeanstalk
 [hubot]: http://hubot.github.com
 [generator-hubot]: https://github.com/github/generator-hubot
+[hubot-slack]: https://github.com/slackhq/hubot-slack
+
+### Important
+DeployBot uses a downgraded version of the [hubot-slack][hubot-slack] client 3.4.2 (latest is 4.1.x)
+due to [bug](https://github.com/slackhq/hubot-slack/issues/326)
 
 ### Setup
 
