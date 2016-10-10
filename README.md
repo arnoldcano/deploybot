@@ -20,6 +20,7 @@ If running locally, set the following environment variables on your host directl
 - `HUBOT_SEMAPHOREAPP_AUTH_TOKEN` - Enter your Semaphore authorization token
 - `HUBOT_SLACK_TOKEN` - Enter your Slack token
 - `HUBOT_AUTH_ADMIN` - Enter your comma separated list of admin user ids
+- `REDIS_URL` - Enter your redis url
 
 If running on a hosted service such as AWS Elastic Beanstalk, you can set the environment 
 variables on your apps Software Configuration page.
@@ -38,6 +39,11 @@ token. You can invite the bot to whatever channel you want it to be present in.
 
 DeployBot understands the following commands:
 
+- `deploybot <user> has <role> role` - Assigns a role to a user
+- `deploybot <user> doesn't have <role> role` - Removes a role from a user
+- `deploybot brain show storage` - Display the contents that are persisted in the brain
+- `deploybot brain show storage --key=[key]` - Display the contents that are persisted with specified key in the brain
+- `deploybot brain show users` - Display all users that hubot knows about
 - `deploybot deploy project` - deploys project/master to 'prod'
 - `deploybot deploy project to server` - deploys project/master to server
 - `deploybot deploy project/branch` - deploys project/branch to 'prod'
@@ -50,13 +56,11 @@ DeployBot understands the following commands:
 - `deploybot deployed msg on project to server` - check if commit message has been deployed to server on project
 - `deploybot help` - Displays all of the help commands that Hubot knows about.
 - `deploybot help <query>` - Displays all help commands that match <query>.
-- `deploybot semaphoreapp status [<project> [<branch>]]` - Reports build status for projects branches
-- `deploybot <user> has <role> role` - Assigns a role to a user
-- `deploybot <user> doesn't have <role> role` - Removes a role from a user
-- `deploybot what roles does <user> have` - Find out what roles a user has
-- `deploybot what roles do I have` - Find out what roles you have
-- `deploybot who has <role> role` - Find out who has the given role
 - `deploybot list assigned roles` - List all assigned roles
+- `deploybot semaphoreapp status [<project> [<branch>]]` - Reports build status for projects branches
+- `deploybot what roles do I have` - Find out what roles you have
+- `deploybot what roles does <user> have` - Find out what roles a user has
+- `deploybot who has <role> role` - Find out who has the given role
 
 ### AWS Elastic Beanstalk Deploy
 
