@@ -1,0 +1,29 @@
+{
+  "AWSEBDockerrunVersion": "2",
+  "containerDefinitions": [
+    {
+      "name": "deploybot",
+      "image": "553901336804.dkr.ecr.us-east-1.amazonaws.com/deploybot:<TAG>",
+      "essential": true,
+      "memory": 256
+      "mountPoints": [
+        {
+          "sourceVolume": "awseb-logs-deploybot",
+          "containerPath": "/var/log/deploybot"
+        }
+      ],
+    },
+    {
+      "name": "redis",
+      "image": "redis:latest",
+      "essential": true,
+      "memory": 256,
+      "mountPoints": [
+        {
+          "sourceVolume": "awseb-logs-redis",
+          "containerPath": "/var/log/redis"
+        }
+      ]
+    }
+  ]
+}

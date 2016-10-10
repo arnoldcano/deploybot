@@ -1,6 +1,7 @@
 [
   "hubot-help",
-  "hubot-heroku-keepalive",
   "hubot-redis-brain",
-  "hubot-semaphoreapp"
+  "hubot-semaphoreapp",
+  "hubot-auth",
+  "hubot-brain-inspect"
 ]
