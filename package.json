@@ -7,7 +7,6 @@
   "dependencies": {
     "hubot": "^2.19.0",
     "hubot-auth": "^2.0.0",
-    "hubot-brain-inspect": "0.0.1",
     "hubot-help": "^0.2.0",
     "hubot-redis-brain": "0.0.3",
     "hubot-semaphoreapp": "github:arnoldcano/hubot-semaphoreapp",
