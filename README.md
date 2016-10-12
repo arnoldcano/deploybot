@@ -69,12 +69,12 @@ Users **must** be assigned to the 'deploy' role by and an admin before it is act
 #### Rollback
 
 - `deploybot rollback project` - rolls back project/master by 1 to 'prod'
-- `deploybot rollback project by builds` - rolls back project/master by builds to 'prod'
-- `deploybot rollback project by builds to server` - rolls back project/master by builds to server
+- `deploybot rollback project by n_builds` - rolls back project/master by n_builds to 'prod'
+- `deploybot rollback project by n_builds to server` - rolls back project/master by n_builds to server
 - `deploybot rollback project to server` - rolls back project/master by 1 to server
 - `deploybot rollback project/branch` - rolls back project/branch by 1 to 'prod'
-- `deploybot rollback project/branch by builds` - rolls back project/branch by builds to 'prod'
-- `deploybot rollback project/branch by builds to server` - rolls back project/branch by builds to server
+- `deploybot rollback project/branch by n_builds` - rolls back project/branch by n_builds to 'prod'
+- `deploybot rollback project/branch by n_builds to server` - rolls back project/branch by n_builds to server
 - `deploybot rollback project/branch to server` - rolls back project/branch by 1 to server
 
 #### Status
