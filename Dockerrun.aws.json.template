@@ -1,5 +1,13 @@
 {
   "AWSEBDockerrunVersion": "2",
+  "volumes": [
+    {
+      "name": "deploybot-redis",
+      "host": {
+        "sourcePath": "/var/app/current"
+      }
+    }
+  ],
   "containerDefinitions": [
     {
       "name": "deploybot",
