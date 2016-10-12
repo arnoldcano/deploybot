@@ -11,6 +11,12 @@
           "sourceVolume": "awseb-logs-deploybot",
           "containerPath": "/var/log/deploybot"
         }
+      ],
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 8080
+        }
       ]
     },
     {

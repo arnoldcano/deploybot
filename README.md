@@ -21,11 +21,15 @@ token and save for later.
 
 If running locally, set the following environment variables on your host directly.
 
-- `HUBOT_SEMAPHOREAPP_DEPLOY` - Enter something non-zero to enable deployment commands
-- `HUBOT_SEMAPHOREAPP_AUTH_TOKEN` - Enter your Semaphore authorization token
 - `HUBOT_SLACK_TOKEN` - Enter your Slack token
 - `HUBOT_AUTH_ADMIN` - Enter your comma separated list of admin Slack user ids (ex. U12345678)
 - `REDIS_URL` - Enter your Redis url
+- `HUBOT_SEMAPHOREAPP_TRIGGER` - Comma-separated list of additional keywords that will trigger status (e.g. "deploy")
+- `HUBOT_SEMAPHOREAPP_NOTIFY_RULES` - Comma-separated list of rules (e.g. "room:branch:status")
+- `HUBOT_SEMAPHOREAPP_AUTH_TOKEN` - Enter your Semaphore authorization token
+- `HUBOT_SEMAPHOREAPP_DEPLOY` - Enter something non-zero to enable deployment commands
+- `HUBOT_SEMAPHOREAPP_DEFAULT_PROJECT` - Your default semaphore project or 'proj'
+- `HUBOT_SEMAPHOREAPP_DEFAULT_SERVER` - Your default semaphore server or 'prod'
 
 If running on a hosted service such as AWS Elastic Beanstalk, you can set the environment 
 variables on your apps Software Configuration page.
@@ -61,6 +65,17 @@ Users **must** be assigned to the 'deploy' role by and an admin before it is act
 - `deploybot deploy project to server` - deploys project/master to server
 - `deploybot deploy project/branch` - deploys project/branch to 'prod'
 - `deploybot deploy project/branch to server` - deploys project/branch to server
+
+#### Rollback
+
+- `deploybot rollback project` - rolls back project/master by 1 to 'prod'
+- `deploybot rollback project by builds` - rolls back project/master by builds to 'prod'
+- `deploybot rollback project by builds to server` - rolls back project/master by builds to server
+- `deploybot rollback project to server` - rolls back project/master by 1 to server
+- `deploybot rollback project/branch` - rolls back project/branch by 1 to 'prod'
+- `deploybot rollback project/branch by builds` - rolls back project/branch by builds to 'prod'
+- `deploybot rollback project/branch by builds to server` - rolls back project/branch by builds to server
+- `deploybot rollback project/branch to server` - rolls back project/branch by 1 to server
 
 #### Status
 
