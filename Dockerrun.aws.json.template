@@ -26,8 +26,19 @@
       "memory": 256,
       "mountPoints": [
         {
+          "sourceVolume": "deploybot-redis",
+          "containerPath": "/var/lib/redis/data",
+          "readOnly": false
+	},
+        {
           "sourceVolume": "awseb-logs-redis",
           "containerPath": "/var/log/redis"
+        }
+      ],
+      "portMappings": [
+        {
+          "hostPort": 6379,
+          "containerPort": 6379
         }
       ]
     }
