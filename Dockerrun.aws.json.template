@@ -25,12 +25,18 @@
       "essential": true,
       "memory": 256,
       "links": [
-	"deploybot"
+        "deploybot"
       ],
       "mountPoints": [
         {
           "sourceVolume": "awseb-logs-redis",
           "containerPath": "/var/log/redis"
+        }
+      ],
+      "portMappings": [
+        {
+          "hostPort": 6379,
+          "containerPort": 6379
         }
       ]
     }
