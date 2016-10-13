@@ -6,6 +6,9 @@
       "image": "553901336804.dkr.ecr.us-east-1.amazonaws.com/deploybot:<TAG>",
       "essential": true,
       "memory": 256,
+      "links": [
+        "redis"
+      ],
       "mountPoints": [
         {
           "sourceVolume": "awseb-logs-deploybot",
@@ -24,9 +27,6 @@
       "image": "redis:latest",
       "essential": true,
       "memory": 256,
-      "links": [
-        "deploybot"
-      ],
       "mountPoints": [
         {
           "sourceVolume": "awseb-logs-redis",
