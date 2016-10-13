@@ -30,9 +30,4 @@ if [ -z "$HUBOT_SLACK_TOKEN" ]; then
   exit 1
 fi
 
-if [ -z "$REDIS_URL" ]; then
-  echo "REDIS_URL is not set"
-  exit 1
-fi
-
 bin/hubot -a slack
