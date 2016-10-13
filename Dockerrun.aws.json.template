@@ -4,7 +4,7 @@
     {
       "name": "deploybot-redis",
       "host": {
-        "sourcePath": "/var/app/current"
+        "sourcePath": "/var/app/current/deploybot-redis"
       }
     }
   ],
@@ -32,6 +32,11 @@
       "image": "redis:latest",
       "essential": true,
       "memory": 256,
+      "links": [
+        {
+	  "deploybot"
+	}
+      ],
       "mountPoints": [
         {
           "sourceVolume": "deploybot-redis",
