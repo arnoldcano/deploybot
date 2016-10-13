@@ -12,4 +12,6 @@ RUN npm install
 
 COPY . $BOT_DIR
 
+EXPOSE 8080
+
 CMD sh run.sh
