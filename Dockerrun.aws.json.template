@@ -38,7 +38,7 @@
       "mountPoints": [
         {
           "sourceVolume": "redis-data",
-          "containerPath": "/var/lib/redis/data",
+          "containerPath": "/var/lib/redis/data"
 	},
         {
           "sourceVolume": "awseb-logs-redis",
