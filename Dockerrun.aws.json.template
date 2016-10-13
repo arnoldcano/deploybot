@@ -33,9 +33,7 @@
       "essential": true,
       "memory": 256,
       "links": [
-        {
-	  "deploybot"
-	}
+	"deploybot"
       ],
       "mountPoints": [
         {
