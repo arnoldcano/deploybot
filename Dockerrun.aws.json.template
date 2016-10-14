@@ -1,9 +1,11 @@
 {
   "AWSEBDockerrunVersion": "2",
   "volumes": [
-    "name": "redis-data",
-    "host": {
-      "sourcePath": "/data/redis"
+    {
+      "name": "redis-data",
+      "host": {
+        "sourcePath": "/data/redis"
+      }
     }
   ],
   "containerDefinitions": [
