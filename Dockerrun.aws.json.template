@@ -1,13 +1,5 @@
 {
   "AWSEBDockerrunVersion": "2",
-  "volumes": [
-    {
-      "name": "redis-data",
-      "host": {
-        "sourcePath": "/data/redis"
-      }
-    }
-  ],
   "containerDefinitions": [
     {
       "name": "deploybot",
@@ -37,19 +29,8 @@
       "memory": 256,
       "mountPoints": [
         {
-          "sourceVolume": "redis-data",
-          "containerPath": "/var/lib/redis/data",
-	  "readOnly": false
-        },
-        {
           "sourceVolume": "awseb-logs-redis",
           "containerPath": "/var/log/redis"
-        }
-      ],
-      "portMappings": [
-        {
-          "hostPort": 6379,
-          "containerPort": 6379
         }
       ]
     }
