@@ -37,7 +37,7 @@
       "memory": 128,
       "command": [
         "redis-server",
-	"--appendonly yes"
+        "--appendonly yes"
       ],
       "mountPoints": [
         {
