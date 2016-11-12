@@ -47,10 +47,8 @@ generate_deploy_json() {
 
 deploy_to_dcos() {
   if dcos marathon app show $NAME 2>&1 | grep -q 'Error'; then
-    echo 'add'
     dcos marathon app add < $TAG.json
   else
-    echo 'update'
     dcos marathon app update $NAME < $TAG.json
   fi
 }
