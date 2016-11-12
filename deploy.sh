@@ -1,7 +1,19 @@
 #!/bin/sh
 
-APP='deploybot'
+NAME='deploybot'
+TEMPLATE='deploy.template.json'
 TAG=`git rev-parse --short HEAD`
+
+install_dcos_cli() {
+  if ! type dcos > /dev/null; then
+    echo 'Installing DCOS CLI...'
+    curl -fLsS --retry 20 -Y 100000 -y 60 https://downloads.dcos.io/binaries/cli/linux/x86-64/dcos-1.8/dcos -o dcos
+    sudo mv dcos /usr/local/bin
+    sudo chmod +x /usr/local/bin/dcos
+  fi
+  dcos config set core.dcos_url $DCOS_URL > /dev/null 2>&1
+  dcos config set core.dcos_acs_token $DCOS_ACS_TOKEN > /dev/null 2>&1
+}
 
 check_environment() {
   echo 'Checking environment...'
@@ -21,17 +33,7 @@ check_environment() {
     echo 'HUBOT_SLACK_TOKEN is not set'
     exit 1
   fi
-}
-
-install_dcos_cli() {
-  if ! type dcos > /dev/null; then
-    echo 'Installing DCOS CLI...'
-    curl -fLsS --retry 20 -Y 100000 -y 60 https://downloads.dcos.io/binaries/cli/linux/x86-64/dcos-1.8/dcos -o dcos
-    sudo mv dcos /usr/local/bin
-    sudo chmod +x /usr/local/bin/dcos
-  fi
-  dcos config set core.dcos_url $DCOS_URL
-  dcos config set core.dcos_acs_token $DCOS_ACS_TOKEN
+  install_dcos_cli
 }
 
 generate_deploy_json() {
@@ -40,20 +42,11 @@ generate_deploy_json() {
     echo 'Deploy template json file not found'
     exit 1
   fi
-  cat deploy.template.json \
+  cat $TEMPLATE \
     | sed "s|<TAG>|$TAG|g" \
     | sed "s|<HUBOT_SEMAPHOREAPP_AUTH_TOKEN>|$HUBOT_SEMAPHOREAPP_AUTH_TOKEN|g" \
     | sed "s|<HUBOT_SLACK_TOKEN>|$HUBOT_SLACK_TOKEN|g" \
     > $TAG.json
-}
-
-deploy_to_dcos() {
-  echo 'Deploying to DCOS...'
-  if dcos marathon app show $APP 2>&1 | grep -q 'Error'; then
-    dcos marathon app add < $TAG.json
-  else
-    dcos marathon app update $APP < $TAG.json
-  fi
 }
 
 cleanup_deploy_json() {
@@ -63,8 +56,16 @@ cleanup_deploy_json() {
   fi
 }
 
+deploy_to_dcos() {
+  generate_deploy_json
+  echo 'Deploying to DCOS...'
+  if dcos marathon app show $NAME 2>&1 | grep -q 'Error'; then
+    dcos marathon app add < $TAG.json
+  else
+    dcos marathon app update $NAME < $TAG.json
+  fi
+  cleanup_deploy_json
+}
+
 check_environment
-install_dcos_cli
-generate_deploy_json
 deploy_to_dcos
-cleanup_deploy_json
