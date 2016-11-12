@@ -3,6 +3,7 @@
 NAME='deploybot'
 TEMPLATE='deploy.template.json'
 TAG=`git rev-parse --short HEAD`
+DCOS_CLI_URL='https://downloads.dcos.io/binaries/cli/linux/x86-64/dcos-1.8/dcos'
 
 check_environment() {
   if [ -z "$DCOS_URL" ]; then
@@ -25,7 +26,7 @@ check_environment() {
 
 install_dcos_cli() {
   if ! type dcos > /dev/null; then
-    curl -fLsS --retry 20 -Y 100000 -y 60 https://downloads.dcos.io/binaries/cli/linux/x86-64/dcos-1.8/dcos -o dcos
+    curl -fLsS --retry 20 -Y 100000 -y 60 $DCOS_CLI_URL -o dcos
     sudo mv dcos /usr/local/bin
     sudo chmod +x /usr/local/bin/dcos
   fi
@@ -34,7 +35,7 @@ install_dcos_cli() {
 }
 
 generate_deploy_json() {
-  if [ ! -f "deploy.template.json" ]; then
+  if [ ! -f "$TEMPLATE" ]; then
     echo "$TEMPLATE not found"
     exit 1
   fi

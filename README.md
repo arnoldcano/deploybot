@@ -31,9 +31,6 @@ If running locally, set the following environment variables on your host directl
 - `HUBOT_SEMAPHOREAPP_DEFAULT_PROJECT` - Your default semaphore project or 'proj'
 - `HUBOT_SEMAPHOREAPP_DEFAULT_SERVER` - Your default semaphore server or 'prod'
 
-If running on a hosted service such as AWS Elastic Beanstalk, you can set the environment 
-variables on your apps Software Configuration page.
-
 ### Run
 
 Install `brew install redis` and run `brew services start redis` Redis server.
