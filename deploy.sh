@@ -3,7 +3,7 @@
 APP='deploybot'
 TAG=`git rev-parse --short HEAD`
 
-function check_environment {
+check_environment() {
   echo 'Checking environment...'
   if [ -z "$DCOS_URL" ]; then
     echo 'DCOS_URL is not set'
@@ -23,7 +23,7 @@ function check_environment {
   fi
 }
 
-function install_dcos_cli {
+install_dcos_cli() {
   if ! type dcos > /dev/null; then
     echo 'Installing DCOS CLI...'
     curl -fLsS --retry 20 -Y 100000 -y 60 https://downloads.dcos.io/binaries/cli/linux/x86-64/dcos-1.8/dcos -o dcos
@@ -34,7 +34,7 @@ function install_dcos_cli {
   dcos config set core.dcos_acs_token $DCOS_ACS_TOKEN
 }
 
-function generate_deploy_json {
+generate_deploy_json() {
   echo 'Generating deploy json...'
   if [ ! -f "deploy.template.json" ]; then
     echo 'Deploy template json file not found'
@@ -47,7 +47,7 @@ function generate_deploy_json {
     > $TAG.json
 }
 
-function deploy_to_dcos {
+deploy_to_dcos() {
   echo 'Deploying to DCOS...'
   if dcos marathon app show $APP 2>&1 | grep -q 'Error'; then
     dcos marathon app add < $TAG.json
@@ -56,7 +56,7 @@ function deploy_to_dcos {
   fi
 }
 
-function cleanup_deploy_json {
+cleanup_deploy_json() {
   echo 'Cleaning up deploy json...'
   if [ -f "$TAG.json" ]; then
     rm $TAG.json
