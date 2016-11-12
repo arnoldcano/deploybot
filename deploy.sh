@@ -24,7 +24,7 @@ check_environment() {
   fi
 }
 
-install_dcos_cli() {
+setup_dcos_cli() {
   if ! type dcos > /dev/null; then
     curl -fLsS --retry 20 -Y 100000 -y 60 $DCOS_CLI_URL -o dcos
     sudo mv dcos /usr/local/bin
@@ -34,7 +34,7 @@ install_dcos_cli() {
   dcos config set core.dcos_acs_token $DCOS_ACS_TOKEN
 }
 
-generate_deploy_json() {
+prepare_deploy() {
   if [ ! -f "$TEMPLATE" ]; then
     echo "$TEMPLATE not found"
     exit 1
@@ -54,14 +54,19 @@ deploy_to_dcos() {
   fi
 }
 
-cleanup_deploy_json() {
+cleanup_deploy() {
   if [ -f "$TAG.json" ]; then
     rm $TAG.json
   fi
 }
 
+echo 'Checking environment...'
 check_environment
-install_dcos_cli
-generate_deploy_json
+echo 'Setup DCOS CLI...'
+setup_dcos_cli
+echo 'Preparing deploy...'
+prepare_deploy
+echo 'Deploying to DCOS...'
 deploy_to_dcos
-cleanup_deploy_json
+echo 'Cleanup deploy...'
+cleanup_deploy
