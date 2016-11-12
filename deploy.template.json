@@ -1,0 +1,53 @@
+{
+  "id": "/deploybot",
+  "cpus": 0.25,
+  "mem": 128,
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "553901336804.dkr.ecr.us-east-1.amazonaws.com/deploybot:<TAG>",
+      "network": "BRIDGE",
+      "portMappings": [
+        { 
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "protocol": "tcp"
+        }
+      ]
+    }
+  },
+  "acceptedResourceRoles": [
+    "slave_public"
+  ],
+  "uris": [
+    "file:///home/core/docker.tar.gz"
+  ],
+  "env": {
+    "HUBOT_SEMAPHOREAPP_DEPLOY": "true",
+    "HUBOT_SEMAPHOREAPP_AUTH_TOKEN": "<HUBOT_SEMAPHOREAPP_AUTH_TOKEN>",
+    "HUBOT_SLACK_TOKEN": "<HUBOT_SLACK_TOKEN>",
+    "HUBOT_AUTH_ADMIN": "U2LDK2VGR",
+    "HUBOT_SEMAPHOREAPP_NOTIFY_RULES": "deploys:master",
+    "HUBOT_SEMAPHOREAPP_TRIGGER": "deploy",
+    "REDIS_URL": "redis://redis.marathon.l4lb.thisdcos.directory:6379"
+  },
+  "healthChecks": [
+    {
+      "protocol": "TCP",
+      "portIndex": 0,
+      "gracePeriodSeconds": 300,
+      "intervalSeconds": 60,
+      "timeoutSeconds": 20,
+      "maxConsecutiveFailures": 3,
+      "ignoreHttp1xx": false
+    }
+  ],
+  "upgradeStrategy": {
+    "maximumOverCapacity": 0,
+    "minimumHealthCapacity": 0
+  },
+  "labels": {
+    "MARATHON_SINGLE_INSTANCE_APP": "true"
+  }
+}
