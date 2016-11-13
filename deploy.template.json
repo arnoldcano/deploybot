@@ -1,7 +1,7 @@
 {
   "id": "/deploybot",
   "cpus": 0.25,
-  "mem": 128,
+  "mem": 256,
   "instances": 1,
   "container": {
     "type": "DOCKER",
