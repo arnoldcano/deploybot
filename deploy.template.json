@@ -47,6 +47,9 @@
     "maximumOverCapacity": 0,
     "minimumHealthCapacity": 0
   },
+  "dependencies": [
+    "/redis"
+  ],
   "labels": {
     "MARATHON_SINGLE_INSTANCE_APP": "true"
   }
